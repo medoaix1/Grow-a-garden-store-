@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>grow a garden store — متجر اللعبة</title>
+  <meta name="description" content="منصة لعرض وطلب منتجات داخل لعبة Grow a Garden - تصميم احترافي Dark Mode.">
+  <!-- ربط CSS خارجي -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDKs (compat بسيط على الموبايل) -->
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  
+  
+  
+  <!-- ========== AUTH OVERLAY ========== -->
+  <div id="authScreen" class="overlay visible" role="dialog" aria-label="تسجيل الدخول">
+    <div class="auth-card card">
+      <h1 class="auth-title">تسجيل الدخول</h1>
+      <p class="auth-sub">ادخل اسمك المستعار والبريد (Gmail) عشان توصلك إشعارات الطلبات.</p>
+      
+      <label class="field" for="nickname">
+        <span>الاسم المستعار</span>
+        <input id="nickname" type="text" placeholder="مثال: MEDO3" aria-label="الاسم المستعار" />
+      </label>
+
+      <label class="field" for="email">
+        <span>البريد الإلكتروني (Gmail)</span>
+        <input id="email" type="email" placeholder="example@gmail.com" aria-label="البريد الإلكتروني" />
+      </label>
+
+      <div class="row center">
+        <button id="btnLogin" class="btn btn-purple">دخول</button>
+      </div>
+
+      <p class="muted small">لن نطلب كلمة سر في النسخة التجريبية — التسجيل لحفظ الاسم وإشعارات الطلبات.</p>
+    </div>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" role="banner">
+    <div class="wrap header-wrap">
+      <div class="brand" role="img" aria-label="Grow a Garden Store Logo">
+        <div class="brand-title">grow a garden store</div>
+        <div class="brand-sub">made by magnam</div>
+      </div>
+
+      <div id="userArea" class="user-area hidden" aria-hidden="true">
+        <div id="userNick" class="user-nick" aria-live="polite"></div>
+        <button id="btnLogout" class="btn btn-ghost">خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN ========== -->
+  <main class="container" role="main">
+    <div class="wrap">
+      <div class="top-controls">
+        <h2 class="section-title">المنتجات المعروضة</h2>
+        <div class="controls">
+          <button id="btnAddProduct" class="btn btn-primary hidden">➕ إضافة منتج</button>
+        </div>
+      </div>
+
+      <!-- Add Product Card -->
+      <section id="addFormCard" class="card hidden add-card" aria-hidden="true">
+        <h3>أضف منتج</h3>
+        <div class="grid">
+          <label class="field"><span>اسم المنتج</span><input id="p_name" type="text" placeholder="مثال: أرنب نادر" /></label>
+          <label class="field"><span>النوع</span>
+            <select id="p_type">
+              <option value="">اختر النوع</option>
+              <option value="حيوان">حيوان</option>
+              <option value="فلوس">فلوس</option>
+              <option value="آخر">آخر</option>
+            </select>
+          </label>
+          <label class="field"><span>الكمية</span><input id="p_qty" type="number" min="1" placeholder="مثال: 1" /></label>
+          <label class="field"><span>وسيلة التواصل</span><input id="p_contact" type="text" placeholder="wa.me/..., Discord#..., روبlox..." /></label>
+          <label class="field"><span>صورة (رابط)</span><input id="p_img" type="text" placeholder="رابط صورة http/https" /></label>
+        </div>
+
+        <div class="row">
+          <button id="saveProduct" class="btn btn-primary">حفظ المنتج</button>
+          <button id="cancelAdd" class="btn btn-ghost">إلغاء</button>
+        </div>
+      </section>
+
+      <!-- Products Grid -->
+      <section id="productsSection" aria-labelledby="productsTitle">
+        <div id="productsList" class="products-grid" role="list"></div>
+        <p id="emptyMsg" class="muted empty-msg">لا توجد منتجات حتى الآن — سجّل ودع البايعين يضيفوا منتجاتهم.</p>
+      </section>
+
+      <!-- Requests Section (Seller view) -->
+      <section id="requestsSection" class="card hidden" aria-hidden="true">
+        <h3>الطلبات اللي وصّلتلك</h3>
+        <div id="requestsList" class="requests-list" role="list"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="wrap"><p>© 2025 grow a garden store</p></div>
+  </footer>
+
+  <!-- ========== TOAST ========== -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ربط جافاسكربت -->
+  <script src="app.js"></script>
+  
+<!-- ربط ملف تسجيل الدخول -->
+  <script src="login.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,127 @@
+/* =========================================================
+   style.css — PRO Dark Theme (RTL)
+   - Variables for theme
+   - Organized sections: Reset, Layout, Components, Utilities
+   ========================================================= */
+
+/* ========== variables ========== */
+:root{
+  --bg-1: #07070a;
+  --bg-2: #0f1115;
+  --text: #e8f0ff;
+  --muted: rgba(255,255,255,0.45);
+  --card-glass: rgba(255,255,255,0.02);
+  --accent1: #7b61ff;
+  --accent2: #a855f7;
+  --accent-gradient: linear-gradient(90deg,var(--accent1),var(--accent2));
+  --success: #00e676;
+  --danger: #ff5252;
+  --radius: 12px;
+  --max-width: 1100px;
+  --gap: 14px;
+}
+
+/* ========== Reset & base ========== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: Inter, "Segoe UI", Tahoma, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(123,97,255,0.06), transparent 10%),
+    linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 60%);
+  color:var(--text);
+  direction: rtl;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  min-height:100vh;
+  padding-bottom:40px;
+}
+.wrap{max-width:var(--max-width);margin-inline:auto;padding-inline:16px}
+
+/* ========== Header ========== */
+.site-header{
+  background:linear-gradient(90deg, rgba(10,10,12,0.55), rgba(20,22,28,0.55));
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+.header-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px}
+.brand-title{font-weight:800;font-size:18px;color:#f2f8ff;text-transform:lowercase}
+.brand-sub{font-size:11px;color:rgba(255,255,255,0.45)}
+
+/* ========== Buttons ========== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:800;transition:all .16s ease;box-shadow:0 8px 30px rgba(2,6,23,0.45)
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent-gradient);color:#fff}
+.btn-purple{background:var(--accent-gradient);color:#fff;box-shadow:0 10px 40px rgba(123,97,255,0.12)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+.btn-danger{background:linear-gradient(90deg,#ff6b6b,#ff3d3d);color:white}
+.btn:hover{filter:brightness(1.03);transform:translateY(-2px)}
+.btn:focus{outline:2px solid rgba(139,92,246,0.12)}
+
+/* ========== Main layout ========== */
+.container{padding-top:22px;padding-bottom:36px}
+.top-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px}
+.section-title{font-size:20px;font-weight:800;color:#f5f9ff}
+
+/* ========== Cards ========== */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius); padding:14px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 8px 40px rgba(2,6,23,0.55);
+}
+
+/* ========== Auth overlay ========== */
+.overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(0deg, rgba(2,6,23,0.7), rgba(2,6,23,0.7));z-index:80;padding:12px}
+.overlay.visible{display:flex}
+.auth-card{width:100%;max-width:480px;padding:22px;border-radius:14px;text-align:center}
+.auth-title{font-size:22px;font-weight:900;color:#f8fbff;margin-bottom:6px}
+.auth-sub{color:rgba(255,255,255,0.65);font-size:13px;margin-bottom:14px}
+
+/* ========== Forms ========== */
+.field{display:block;text-align:right;margin-bottom:10px}
+.field span{display:block;font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:6px}
+input[type="text"],input[type="email"],input[type="number"],select{
+  width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:#eaf6ff;font-size:14px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.45)
+}
+input::placeholder{color:rgba(255,255,255,0.33)}
+
+/* ========== Product grid ========== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:8px}
+.product-card{padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transition:transform .18s ease,box-shadow .18s ease}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(2,6,23,0.55)}
+.product-head{display:flex;gap:12px;align-items:center}
+.product-thumb{width:72px;height:72px;border-radius:10px;flex:0 0 72px;object-fit:cover;background:linear-gradient(90deg,#111,#222);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px}
+.product-title{font-weight:800;color:#f6fbff;font-size:15px}
+.product-meta{color:rgba(255,255,255,0.65);font-size:13px;margin-top:6px}
+.product-actions{display:flex;gap:8px;margin-top:12px}
+.action-btn{flex:1;padding:10px;border-radius:10px;border:0;font-weight:800;cursor:pointer}
+.action-order{background:linear-gradient(90deg,#00e676,#00c853);color:#06110a}
+.action-copy{background:linear-gradient(90deg,#6b21a8,#a855f7);color:#fff}
+.action-delete{background:linear-gradient(90deg,#ff5252,#ff1744);color:#fff}
+
+/* ========== Requests ========== */
+.requests-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.request-item{padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-size:14px;color:#eaf6ff}
+
+/* ========== Empty / misc ========== */
+.muted{color:rgba(255,255,255,0.45)}
+.empty-msg{margin-top:12px;color:rgba(255,255,255,0.35)}
+.site-footer{text-align:center;padding:12px;color:rgba(255,255,255,0.45);margin-top:20px}
+
+/* ========== Toast ========== */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:#0b0b0b;color:#fff;padding:10px 16px;border-radius:10px;display:none;z-index:120;box-shadow:0 8px 30px rgba(0,0,0,0.7)}
+
+/* ========== Responsive tweaks ========== */
+@media (max-width:880px){
+  .row{flex-direction:column}
+  .header-wrap{flex-direction:column;gap:10px}
+  .product-head{flex-direction:row}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+}
+
+/* =========================================================
+   End style.css
+   ========================================================= */
